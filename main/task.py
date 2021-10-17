@@ -1,10 +1,10 @@
-# from celery import Celery
+from celery import Celery
 import datetime
 from django.core.mail import send_mail
 from django.conf import settings
 
 
-# app = Celery('send_mail', broker='redis://localhost')
+app = Celery('send_mail', broker='redis://localhost')
 
 
 

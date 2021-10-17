@@ -26,22 +26,22 @@ def debug_task(self):
 def print_hello():
     print("hello from function")
 
-@app.task
-def mail_sender():
-    # import datetime
-    from django.core.mail import send_mail
-    from django.conf import settings
-    subject = 'auto mail'
-    message = 'auto mail'
-    email_from = 'pk6222307@gmail.com'
-    recipient_list = ['paliwalap7@gmail.com']
-    send_mail(subject, message, email_from, recipient_list)
+# @app.task
+# def mail_sender():
+#     # import datetime
+#     from django.core.mail import send_mail
+#     from django.conf import settings
+#     subject = 'auto mail'
+#     message = 'auto mail'
+#     email_from = 'pk6222307@gmail.com'
+#     recipient_list = ['paliwalap7@gmail.com']
+#     send_mail(subject, message, email_from, recipient_list)
 
-# app.autodiscover_tasks(lambda:settings.INSTALLED_APPS)
+app.autodiscover_tasks(lambda:settings.INSTALLED_APPS)
 
-# app.conf.beat_schedule = {
-#     'add-every-2-hour':{
-#         'task':'s_mail',
-#         'schedule':crontab(minute='*/1')
-#     }
-# }
+app.conf.beat_schedule = {
+    'add-every-2-hour':{
+        'task':'task.s_mail',
+        'schedule':crontab(minute='*/1')
+    }
+}
